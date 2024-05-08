@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center mb-4">Login</h2>
+                {% if error_message %}
+                    <div class="alert alert-danger" id="errorMessage">{{ error_message }}</div>
+                {% endif %}
+                <form id="loginForm" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Timeout function to clear error message after 3 seconds
+        window.onload = function() {
+            setTimeout(function() {
+                var errorMessage = document.getElementById('errorMessage');
+                if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
